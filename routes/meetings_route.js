@@ -7,7 +7,7 @@ const debug = require('util').debuglog('app');
  * Render page for booking appointments
  */
 router.get('/book', (req, res) => {
-  res.locals.user = { role: 'Patient' };
+  res.locals.user = { role: 'Client' };
   let m_list = DB.meetings_filter(false);
   res.render('book_meeting', { meetings: [].concat(m_list.current, m_list.upcoming) });
 });
@@ -25,7 +25,7 @@ router.post('/book', (req, res, next) => {
 
   DB.meetings_put(m);
   debug(`Booked meeting. ID: ${m.id}`, m);
-  res.redirect('/dashboard/patient');
+  res.redirect('/dashboard/client');
 });
 
 /**
@@ -54,7 +54,7 @@ router.post('/create', (req, res) => {
 
   DB.meetings_put(m);
   debug(`Created meeting. ID: ${m.id}`, m);
-  res.redirect('/dashboard/doctor')
+  res.redirect('/dashboard/coach')
 });
 
 /**
