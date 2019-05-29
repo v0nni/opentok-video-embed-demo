@@ -5,7 +5,7 @@ const router = require('express').Router();
 /**
  * Doctor's dashboard
  */
-router.get('/doctor', (req, res) => {
+router.get('/coach', (req, res) => {
   res.locals.user = { role: 'Coach' };
   res.render('dashboard_doctor', { meetings: DB.meetings_filter() })
 });
